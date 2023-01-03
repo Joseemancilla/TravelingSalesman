@@ -1,0 +1,41 @@
+
+
+```{r}
+#####  Traveling Salesman #####
+#### Jose Mancilla ####
+### Independet Study ####
+
+#Read the data sets sent from python files
+cities<-read.csv("cities_dataframe.csv")
+route_df<-read.csv("route_dataframe.csv")
+
+#Print the cities and the route
+print(cities)
+print(route_df)
+
+#Loop through the length of the cities
+la<-1:length(cities$X)
+for (l in la){
+  la[l]=which(route_df$X0[l]==cities$X0) 
+}
+la<-la-1
+
+
+print(la)
+
+#Read the txt file that has the route cost from python file
+tf_one<-read.table("tsp_85900_1_output.txt")
+route_cost<-tf_one$V1[1]
+
+
+
+
+#send the output file 
+sink('tsp_85900_1_output.txt')
+cat(route_cost,fill = TRUE)
+cat(la,fill = TRUE)
+sink()
+
+
+```
+
